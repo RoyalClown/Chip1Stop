@@ -87,6 +87,9 @@ class Category:
                 "件", "")
             pages_count = int(int(products_count) / 25) + 1
 
+            if pages_count > 401:
+                pages_count = 401
+
             for page_no in range(1, pages_count + 1):
                 print("Page:", page_no)
                 complete_form_data = {
@@ -140,13 +143,12 @@ class Category:
                         component = (code, maker, category_name, category_url)
 
                         orcl_conn.component_insert(component)
-                    # orcl_conn.commit()
+                    orcl_conn.commit()
                     orcl_conn.conn.close()
             # ---------------------我是分割线-------------------
 
             # threading_pool = ThreadingPool()
             # threading_pool.multi_thread(thread_go, range(1, pages_count + 1))
-
 
 
 
